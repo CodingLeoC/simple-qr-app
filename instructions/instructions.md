@@ -77,6 +77,12 @@ CREATE TABLE IF NOT EXISTS urls (
 
 # Documentation
 
+## Command add shadcn/ui components
+
+```bash
+npx shadcn@latest add [component]
+```
+
 ## QR Code Generation with `qrcode.react`
 
 Here is the [sample code](https://github.com/zpao/qrcode.react/blob/trunk/examples/download.tsx) to generate a QR code using `qrcode.react`:
