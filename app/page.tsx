@@ -115,15 +115,16 @@ export default function Home() {
         <Card className="w-full p-6">
           <div className="flex flex-col items-center space-y-4">
             <QRCodeSVG
+              id='qr-code'
               value={shortLink}
               size={256}
               level="H"
-              includeMargin
+              marginSize={4}
             />
             <p className="text-sm break-all text-center">{shortLink}</p>
             <Button
               onClick={() => {
-                const svg = document.querySelector('svg')
+                const svg = document.querySelector('#qr-code')
                 if (svg) {
                   const svgData = new XMLSerializer().serializeToString(svg)
                   const blob = new Blob([svgData], { type: 'image/svg+xml' })
