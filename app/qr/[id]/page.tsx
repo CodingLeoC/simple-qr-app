@@ -1,7 +1,12 @@
 import { supabase } from '@/lib/supabase'
 import { redirect } from 'next/navigation'
 
-export default async function QRPage({ params }: { params: { id: string } }) {
+interface QRPageProps {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function QRPage({ params, searchParams }: QRPageProps) {
   const { id } = await params
   const { data, error } = await supabase
     .from('urls')
