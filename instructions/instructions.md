@@ -32,10 +32,10 @@ You are building a simple QR code generator using Next.js 15 with App Router. Th
 
 ```sql
 CREATE TABLE IF NOT EXISTS urls (
-  id CHAR(12) PRIMARY KEY,
+  id VARCHAR PRIMARY KEY,
   urls TEXT NOT NULL, # store as a JSON array
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  ip_address VARCHAR(15)
+  ip_address VARCHAR
 );
 ```
 
