@@ -6,7 +6,7 @@ interface QRPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export default async function QRPage({ params, searchParams }: QRPageProps) {
+export default async function QRPage({ params }: QRPageProps) {
   const { id } = await params
   const { data, error } = await supabase
     .from('urls')
