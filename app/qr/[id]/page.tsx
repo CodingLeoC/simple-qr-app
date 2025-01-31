@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase'
-import { redirect } from 'next/navigation'
+import RedirectWithDelay from '@/components/RedirectWithDelay'
 
 interface QRPageProps {
   params: Promise<{ id: string }>;
@@ -23,9 +23,9 @@ export default async function QRPage({ params }: QRPageProps) {
     )
   }
 
-  // If single URL, redirect directly
+  // If single URL, show countdown component
   if (data.urls.length === 1) {
-    redirect(data.urls[0])
+    return <RedirectWithDelay url={data.urls[0]} />
   }
 
   // If multiple URLs, show list
