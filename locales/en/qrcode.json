@@ -1,3 +1,5 @@
 {
-    "qrCodeNotFound": "The requested QR code could not be found."
+    "qrCodeNotFound": "The QR code you are looking for could not be found",
+    "qrCodeNotFoundHeading": "QR Code Not Found",
+    "multipleUrlsFoundHeading": "Multiple URLs Found"
 }

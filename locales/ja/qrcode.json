@@ -1,3 +1,5 @@
 {
-    "qrCodeNotFound": "指定されたQRコードは見つかりませんでした。"
+    "qrCodeNotFound": "お探しのQRコードが見つかりませんでした",
+    "qrCodeNotFoundHeading": "QRコードが見つかりません",
+    "multipleUrlsFoundHeading": "複数のURLが見つかりました"
 }
