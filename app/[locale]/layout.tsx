@@ -19,19 +19,20 @@ export const metadata: Metadata = {
   description: "A simple and powerful QR code generator built with Next.js",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
   if (!i18nConfig.locales.includes(locale)) {
     notFound();
   }
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
