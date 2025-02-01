@@ -1,13 +1,17 @@
 import { supabase } from '@/lib/supabase'
 import RedirectWithDelay from '@/components/RedirectWithDelay'
+import initTranslations from '@/app/i18n';
 
 interface QRPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string, locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function QRPage({ params }: QRPageProps) {
-  const { id } = await params
+  const { id, locale } = await params
+
+  const { t } = await initTranslations(locale, ['qrcode']);
+
   const { data, error } = await supabase
     .from('urls')
     .select('urls')
@@ -18,7 +22,7 @@ export default async function QRPage({ params }: QRPageProps) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center p-8">
         <h1 className="text-2xl font-bold mb-4">QR Code Not Found</h1>
-        <p>The requested QR code could not be found.</p>
+        <p>{t('qrcode:qrCodeNotFound')}</p>
       </div>
     )
   }
