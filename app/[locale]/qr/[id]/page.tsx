@@ -1,13 +1,17 @@
 import { supabase } from '@/lib/supabase'
 import RedirectWithDelay from '@/components/RedirectWithDelay'
+import initTranslations from '@/app/i18n';
 
 interface QRPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string, locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function QRPage({ params }: QRPageProps) {
-  const { id } = await params
+  const { id, locale } = await params
+
+  const { t } = await initTranslations(locale, ['qrcode']);
+
   const { data, error } = await supabase
     .from('urls')
     .select('urls')
@@ -17,8 +21,8 @@ export default async function QRPage({ params }: QRPageProps) {
   if (error || !data) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center p-8">
-        <h1 className="text-2xl font-bold mb-4">QR Code Not Found</h1>
-        <p>The requested QR code could not be found.</p>
+        <h1 className="text-2xl font-bold mb-4">{t('qrcode:qrCodeNotFoundHeading')}</h1>
+        <p>{t('qrcode:qrCodeNotFound')}</p>
       </div>
     )
   }
@@ -31,7 +35,7 @@ export default async function QRPage({ params }: QRPageProps) {
   // If multiple URLs, show list
   return (
     <div className="flex min-h-screen flex-col items-center p-8 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-8">Multiple URLs Found</h1>
+      <h1 className="text-2xl font-bold mb-8">{t('qrcode:multipleUrlsFoundHeading')}</h1>
       <ul className="space-y-4 w-full">
         {data.urls.map((url: string, index: number) => (
           <li key={index}>

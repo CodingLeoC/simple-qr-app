@@ -1,0 +1,7 @@
+{
+    "qrCodeNotFound": "The QR code you are looking for could not be found",
+    "qrCodeNotFoundHeading": "QR Code Not Found",
+    "multipleUrlsFoundHeading": "Multiple URLs Found",
+    "redirectMessage": "Redirecting in {{seconds}} seconds...",
+    "redirectingTo": "You will be automatically redirected to:"
+}

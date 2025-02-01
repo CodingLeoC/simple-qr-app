@@ -1,0 +1,7 @@
+{
+    "qrCodeNotFound": "お探しのQRコードが見つかりませんでした",
+    "qrCodeNotFoundHeading": "QRコードが見つかりません",
+    "multipleUrlsFoundHeading": "複数のURLが見つかりました",
+    "redirectMessage": "{{seconds}}秒後にリダイレクトします...",
+    "redirectingTo": "以下のURLに自動的にリダイレクトします:"
+}

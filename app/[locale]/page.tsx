@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
   const [inputType, setInputType] = useState<'single' | 'multiple'>('single')
@@ -16,6 +17,8 @@ export default function Home() {
   const [shortLink, setShortLink] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,12 +43,12 @@ export default function Home() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to generate QR code')
+        throw new Error(data.error || t('home:errorMessages.generationFailed'))
       }
 
       setShortLink(data.shortLink)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred')
+      setError(err instanceof Error ? err.message : t('home:errorMessages.default'))
     } finally {
       setIsLoading(false)
     }
@@ -53,12 +56,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-8 max-w-2xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8">Simple QR Code Generator</h1>
+      <h1 className="text-4xl font-bold mb-8">{t('home:title')}</h1>
       
       <Card className="w-full p-6 mb-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
-            <Label>URL Input Type</Label>
+            <Label>{t('home:inputTypeLabel')}</Label>
             <RadioGroup
               defaultValue="single"
               onValueChange={(value) => setInputType(value as 'single' | 'multiple')}
@@ -66,22 +69,22 @@ export default function Home() {
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="single" id="single" />
-                <Label htmlFor="single">Single URL</Label>
+                <Label htmlFor="single">{t('home:singleUrlLabel')}</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="multiple" id="multiple" />
-                <Label htmlFor="multiple">Multiple URLs (max 10)</Label>
+                <Label htmlFor="multiple">{t('home:multipleUrlsLabel')}</Label>
               </div>
             </RadioGroup>
           </div>
 
           {inputType === 'single' ? (
             <div className="space-y-2">
-              <Label htmlFor="url">Enter URL</Label>
+              <Label htmlFor="url">{t('home:singleUrlPlaceholder')}</Label>
               <Input
                 id="url"
                 type="url"
-                placeholder="https://example.com"
+                placeholder={t('home:singleUrlPlaceholder')}
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 required
@@ -89,10 +92,10 @@ export default function Home() {
             </div>
           ) : (
             <div className="space-y-2">
-              <Label htmlFor="urls">Enter URLs (one per line)</Label>
+              <Label htmlFor="urls">{t('home:multipleUrlsPlaceholder')}</Label>
               <Textarea
                 id="urls"
-                placeholder="https://example1.com&#10;https://example2.com"
+                placeholder={t('home:multipleUrlsPlaceholder')}
                 value={urls}
                 onChange={(e) => setUrls(e.target.value)}
                 required
@@ -102,11 +105,13 @@ export default function Home() {
           )}
 
           <Button type="submit" disabled={isLoading} className="w-full">
-            {isLoading ? 'Generating...' : 'Generate QR Code'}
+            {isLoading ? t('home:generatingButton') : t('home:generateButton')}
           </Button>
 
           {error && (
-            <p className="text-red-500 text-sm mt-2">{error}</p>
+            <p className="text-red-500 text-sm mt-2">
+              {t(`home:errorMessages.${error}`)}
+            </p>
           )}
         </form>
       </Card>
@@ -139,7 +144,7 @@ export default function Home() {
                 }
               }}
             >
-              Download QR Code
+              {t('home:downloadButton')}
             </Button>
           </div>
         </Card>
