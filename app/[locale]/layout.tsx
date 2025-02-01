@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import initTranslations from '@/app/i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 
-const i18nNamespaces = ['home'];
+const i18nNamespaces = ['home', 'qrcode'];
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

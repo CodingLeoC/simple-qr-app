@@ -1,8 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 export default function RedirectWithDelay({ url }: { url: string }) {
+  const { t } = useTranslation('qrcode')
   const [secondsLeft, setSecondsLeft] = useState(10)
 
   useEffect(() => {
@@ -21,8 +23,8 @@ export default function RedirectWithDelay({ url }: { url: string }) {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-8">
-      <h1 className="text-2xl font-bold mb-4">Redirecting in {secondsLeft} seconds</h1>
-      <p className="text-gray-600">You will be automatically redirected to:</p>
+      <h1 className="text-2xl font-bold mb-4">{t('redirectMessage', { seconds: secondsLeft })}</h1>
+      <p>{t('redirectingTo')}</p>
       <p className="mt-2 text-blue-600 break-all">{url}</p>
     </div>
   )
