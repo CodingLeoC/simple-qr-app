@@ -3,6 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import i18nConfig from '@/i18nConfig';
 import { notFound } from 'next/navigation';
+import initTranslations from '@/app/i18n';
+import TranslationsProvider from '@/components/TranslationsProvider';
+
+const i18nNamespaces = ['home'];
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,12 +35,20 @@ export default async function RootLayout({
     notFound();
   }
 
+  const { t, resources } = await initTranslations(locale, i18nNamespaces);
+
   return (
     <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <TranslationsProvider
+          namespaces={i18nNamespaces}
+          locale={locale}
+          resources={resources}
+        >
+          {children}
+        </TranslationsProvider>
       </body>
     </html>
   );
