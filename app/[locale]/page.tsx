@@ -8,14 +8,18 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Textarea } from '@/components/ui/textarea'
+import initTranslations from '../i18n';
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const [inputType, setInputType] = useState<'single' | 'multiple'>('single')
   const [url, setUrl] = useState('')
   const [urls, setUrls] = useState('')
   const [shortLink, setShortLink] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  const { locale } = await params;
+  const { t } = await initTranslations(locale, ['home']);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -53,7 +57,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-8 max-w-2xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8">Simple QR Code Generator</h1>
+      <h1 className="text-4xl font-bold mb-8">{t('home:title')}</h1>
       
       <Card className="w-full p-6 mb-8">
         <form onSubmit={handleSubmit} className="space-y-6">
