@@ -1,3 +1,15 @@
 {
-  "title": "Simple QR Code Generator"
+  "title": "QR Code Generator",
+  "inputTypeLabel": "URL Input Type",
+  "singleUrlLabel": "Single URL",
+  "multipleUrlsLabel": "Multiple URLs (max 10)",
+  "singleUrlPlaceholder": "Enter URL",
+  "multipleUrlsPlaceholder": "Enter URLs (one per line)",
+  "generateButton": "Generate QR Code",
+  "generatingButton": "Generating...",
+  "downloadButton": "Download QR Code",
+  "errorMessages": {
+    "default": "An error occurred",
+    "generationFailed": "Failed to generate QR code"
+  }
 }

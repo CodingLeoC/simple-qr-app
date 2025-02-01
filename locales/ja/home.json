@@ -1,3 +1,15 @@
 {
-  "title": "シンプル QR コード生成器"
+  "title": "QRコード生成",
+  "inputTypeLabel": "URL入力タイプ",
+  "singleUrlLabel": "単一URL",
+  "multipleUrlsLabel": "複数URL（最大10件）",
+  "singleUrlPlaceholder": "URLを入力",
+  "multipleUrlsPlaceholder": "URLを改行区切りで入力",
+  "generateButton": "QRコード生成",
+  "generatingButton": "生成中...",
+  "downloadButton": "QRコードをダウンロード",
+  "errorMessages": {
+    "default": "エラーが発生しました",
+    "generationFailed": "QRコードの生成に失敗しました"
+  }
 }
