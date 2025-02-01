@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
+import i18nConfig from '@/i18nConfig';
+import { notFound } from 'next/navigation';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,9 +21,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  if (!i18nConfig.locales.includes(locale)) {
+    notFound();
+  }
+
   return (
     <html lang="en">
       <body
