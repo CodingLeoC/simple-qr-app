@@ -5,6 +5,7 @@ import i18nConfig from '@/i18nConfig';
 import { notFound } from 'next/navigation';
 import initTranslations from '@/app/i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
+import Title from '@/components/Title';
 
 const i18nNamespaces = ['home', 'qrcode'];
 
@@ -47,6 +48,7 @@ export default async function RootLayout({
           locale={locale}
           resources={resources}
         >
+          <Title />
           {children}
         </TranslationsProvider>
       </body>

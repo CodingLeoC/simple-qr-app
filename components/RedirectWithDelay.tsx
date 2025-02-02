@@ -22,7 +22,7 @@ export default function RedirectWithDelay({ url }: { url: string }) {
   }, [url])
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-8">
+    <div className="flex min-h-[15vh] flex-col items-center justify-center p-8">
       <h1 className="text-2xl font-bold mb-4">{t('redirectMessage', { seconds: secondsLeft })}</h1>
       <p>{t('redirectingTo')}</p>
       <p className="mt-2 text-blue-600 break-all">{url}</p>

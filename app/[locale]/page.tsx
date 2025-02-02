@@ -55,10 +55,8 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 max-w-2xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8">{t('home:title')}</h1>
-      
-      <Card className="w-full p-6 mb-8">
+    <main className="flex min-h-screen flex-col items-center p-8 pt-4 max-w-2xl mx-auto">
+      <Card className="w-full p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <Label>{t('home:inputTypeLabel')}</Label>
