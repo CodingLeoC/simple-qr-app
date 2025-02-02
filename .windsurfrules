@@ -3,3 +3,4 @@
 3. Again we are using App Router in Next.js 15. It is IMPORTANT to NOT generate imcompatible Pages Router based code.
 4. If you do not know how to do something with App Router, DO NOT proceed and just say "I do not know".
 5. When you need UI components, first look into `components/ui` for the building blocks.
+6. Do not sugget to run `npm run dev` since I can do it myself.
