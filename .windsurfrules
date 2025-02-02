@@ -1,6 +1,6 @@
 1. This is a simple tool for generating QR codes. For an overview of this project, please see the `instructions/instructions.md` file.
-2. It is using Next.js 15 with App Router and Tailwind CSS with shadcn/ui.
-3. Again we are using App Router in Next.js 15. It is IMPORTANT to NOT generate imcompatible Pages Router based code.
-4. If you do not know how to do something with App Router, DO NOT proceed and just say "I do not know".
-5. When you need UI components, first look into `components/ui` for the building blocks.
+2. It is using Next.js 15 with App Router and Tailwind CSS with shadcn/ui. Supabase is used for user authentication and database storage.
+3. Again we are using App Router in Next.js 15. It is IMPORTANT to NOT generate imcompatible Pages Router based code. If you do not know how to do something with App Router, DO NOT proceed and just say "I do not know".
+4. When you need UI components, first look into `components/ui` for the building blocks. You can use the command `npx shadcn@latest add [component]` from `shadcn/ui` to add new components if necessary.
+5. Put custom components in the `components` directory.
 6. Do not sugget to run `npm run dev` since I can do it myself.

@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS urls (
 # Infrastructure
 
 - [Vercel](https://vercel.com/): Host the app on Vercel.
-- [Supabase](https://supabase.com/): Database to store user input and custom URLs.
+- [Supabase](https://supabase.com/): Database to store user input and custom URLs and User Authentication.
 
 # Documentation
 
