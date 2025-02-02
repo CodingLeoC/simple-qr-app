@@ -126,7 +126,14 @@ export default function Home() {
               level="H"
               marginSize={4}
             />
-            <p className="text-sm break-all text-center">{shortLink}</p>
+            <a
+              href={shortLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm break-all text-center underline"
+            >
+              {shortLink}
+            </a>
             <Button
               onClick={() => {
                 const svg = document.querySelector('#qr-code')
