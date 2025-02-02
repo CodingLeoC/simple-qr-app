@@ -55,7 +55,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 pt-4 max-w-2xl mx-auto">
+    <main className="flex flex-col items-center p-8 pt-4 max-w-2xl mx-auto">
       <Card className="w-full p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
@@ -115,7 +115,7 @@ export default function Home() {
       </Card>
 
       {shortLink && (
-        <Card className="w-full p-6">
+        <Card className="w-full p-6 mt-4">
           <div className="flex flex-col items-center space-y-4">
             <QRCodeSVG
               id='qr-code'

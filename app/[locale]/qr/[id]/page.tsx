@@ -20,7 +20,7 @@ export default async function QRPage({ params }: QRPageProps) {
 
   if (error || !data) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center p-8">
+      <div className="flex flex-col items-center justify-center p-8">
         <h1 className="text-2xl font-bold mb-4">{t('qrcode:qrCodeNotFoundHeading')}</h1>
         <p>{t('qrcode:qrCodeNotFound')}</p>
       </div>
@@ -34,7 +34,7 @@ export default async function QRPage({ params }: QRPageProps) {
 
   // If multiple URLs, show list
   return (
-    <div className="flex min-h-screen flex-col items-center p-8 max-w-2xl mx-auto">
+    <div className="flex flex-col items-center p-8 max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold mb-8">{t('qrcode:multipleUrlsFoundHeading')}</h1>
       <ul className="space-y-4 w-full">
         {data.urls.map((url: string, index: number) => (
