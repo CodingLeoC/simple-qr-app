@@ -8,6 +8,9 @@
   "generateButton": "QRコード生成",
   "generatingButton": "生成中...",
   "downloadButton": "QRコードをダウンロード",
+  "foregroundColor": "色",
+  "backgroundColor": "背景色",
+  "sizeLabel": "QRコードサイズ",
   "errorMessages": {
     "default": "エラーが発生しました",
     "generationFailed": "QRコードの生成に失敗しました"

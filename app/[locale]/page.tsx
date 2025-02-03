@@ -17,6 +17,9 @@ export default function Home() {
   const [shortLink, setShortLink] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [fgColor, setFgColor] = useState('#000000');
+  const [bgColor, setBgColor] = useState('#ffffff');
+  const [qrSize, setQrSize] = useState(256);
 
   const { t } = useTranslation();
 
@@ -117,26 +120,69 @@ export default function Home() {
       {shortLink && (
         <Card className="w-full p-6 mt-4">
           <div className="flex flex-col items-center space-y-4">
-            <QRCodeSVG
-              id='qr-code'
-              value={shortLink}
-              size={256}
-              level="H"
-              marginSize={4}
-            />
-            <a
-              href={shortLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm break-all text-center underline"
-            >
-              {shortLink}
-            </a>
+            <div className="w-64 h-64 mx-auto overflow-hidden border border-gray-200">
+              <QRCodeSVG
+                id='qr-code'
+                value={shortLink}
+                size={qrSize}
+                level="H"
+                marginSize={4}
+                fgColor={fgColor}
+                bgColor={bgColor}
+                style={{ width: '100%', height: 'auto' }}
+              />
+            </div>
+            <div>
+              <a
+                href={shortLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm break-all text-center underline"
+              >
+                {shortLink}
+              </a>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2 flex flex-col items-center min-w-[120px]">
+                <Label htmlFor="fg-color">{t('home:foregroundColor')}</Label>
+                <Input
+                  id="fg-color"
+                  type="color"
+                  value={fgColor}
+                  onChange={(e) => setFgColor(e.target.value)}
+                  className="h-10 w-full"
+                />
+              </div>
+              <div className="space-y-2 flex flex-col items-center min-w-[120px]">
+                <Label htmlFor="bg-color">{t('home:backgroundColor')}</Label>
+                <Input
+                  id="bg-color"
+                  type="color"
+                  value={bgColor}
+                  onChange={(e) => setBgColor(e.target.value)}
+                  className="h-10 w-full"
+                />
+              </div>
+            </div>
+            <div className="space-y-2 flex flex-col items-center min-w-[120px]">
+              <Label htmlFor="size">{t('home:sizeLabel')}</Label>
+              <Input
+                id="size"
+                type="number"
+                min="100"
+                max="500"
+                value={qrSize}
+                onChange={(e) => setQrSize(Number(e.target.value))}
+                placeholder="256"
+              />
+            </div>
             <Button
               onClick={() => {
                 const svg = document.querySelector('#qr-code')
                 if (svg) {
-                  const svgData = new XMLSerializer().serializeToString(svg)
+                  const clone = svg.cloneNode(true) as SVGSVGElement
+                  clone.removeAttribute('style')
+                  const svgData = new XMLSerializer().serializeToString(clone)
                   const blob = new Blob([svgData], { type: 'image/svg+xml' })
                   const url = URL.createObjectURL(blob)
                   const a = document.createElement('a')

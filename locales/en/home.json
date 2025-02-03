@@ -8,6 +8,9 @@
   "generateButton": "Generate QR Code",
   "generatingButton": "Generating...",
   "downloadButton": "Download QR Code",
+  "foregroundColor": "Color",
+  "backgroundColor": "Background Color",
+  "sizeLabel": "QR Code Size",
   "errorMessages": {
     "default": "An error occurred",
     "generationFailed": "Failed to generate QR code"
