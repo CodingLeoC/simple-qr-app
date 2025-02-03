@@ -4,3 +4,4 @@
 4. When you need UI components, first look into `components/ui` for the building blocks. You can use the command `npx shadcn@latest add [component]` from `shadcn/ui` to add new components if necessary.
 5. Put custom components in the `components` directory.
 6. Do not sugget to run `npm run dev` since I can do it myself.
+7. If you added new strings to the UI or error messages, add corresponding keys and translations in the `locales` directory.
