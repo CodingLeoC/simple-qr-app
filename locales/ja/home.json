@@ -11,6 +11,7 @@
   "foregroundColor": "色",
   "backgroundColor": "背景色",
   "sizeLabel": "QRコードサイズ",
+  "logoUpload": "ロゴをアップロード",
   "errorMessages": {
     "default": "エラーが発生しました",
     "generationFailed": "QRコードの生成に失敗しました"

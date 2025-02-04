@@ -20,6 +20,8 @@ export default function Home() {
   const [fgColor, setFgColor] = useState('#000000');
   const [bgColor, setBgColor] = useState('#ffffff');
   const [qrSize, setQrSize] = useState(256);
+  const [logo, setLogo] = useState<File | null>(null);
+  const [logoDataURL, setLogoDataURL] = useState<string | null>(null);
 
   const { t } = useTranslation();
 
@@ -129,6 +131,12 @@ export default function Home() {
                 marginSize={4}
                 fgColor={fgColor}
                 bgColor={bgColor}
+                imageSettings={logoDataURL ? {
+                  src: logoDataURL,
+                  height: qrSize/5,
+                  width: qrSize/5,
+                  excavate: true,
+                } : undefined}
                 style={{ width: '100%', height: 'auto' }}
               />
             </div>
@@ -176,12 +184,35 @@ export default function Home() {
                 placeholder="256"
               />
             </div>
+            <div className="space-y-2 flex flex-col items-center min-w-[120px]">
+              <Label htmlFor="logo">{t('home:logoUpload')}</Label>
+              <Input
+                id="logo"
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                      setLogoDataURL(event.target?.result as string);
+                    };
+                    reader.readAsDataURL(file);
+                  } else {
+                    setLogoDataURL(null);
+                  }
+                }}
+                className="h-10"
+              />
+            </div>
             <Button
               onClick={() => {
                 const svg = document.querySelector('#qr-code')
                 if (svg) {
                   const clone = svg.cloneNode(true) as SVGSVGElement
                   clone.removeAttribute('style')
+                  clone.setAttribute('width', qrSize.toString());
+                  clone.setAttribute('height', qrSize.toString());
                   const svgData = new XMLSerializer().serializeToString(clone)
                   const blob = new Blob([svgData], { type: 'image/svg+xml' })
                   const url = URL.createObjectURL(blob)

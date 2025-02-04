@@ -11,6 +11,7 @@
   "foregroundColor": "Color",
   "backgroundColor": "Background Color",
   "sizeLabel": "QR Code Size",
+  "logoUpload": "Upload Logo",
   "errorMessages": {
     "default": "An error occurred",
     "generationFailed": "Failed to generate QR code"
