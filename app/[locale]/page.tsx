@@ -20,7 +20,6 @@ export default function Home() {
   const [fgColor, setFgColor] = useState('#000000');
   const [bgColor, setBgColor] = useState('#ffffff');
   const [qrSize, setQrSize] = useState(256);
-  const [logo, setLogo] = useState<File | null>(null);
   const [logoDataURL, setLogoDataURL] = useState<string | null>(null);
 
   const { t } = useTranslation();
