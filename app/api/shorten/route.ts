@@ -4,6 +4,9 @@ import { nanoid } from 'nanoid'
 import { supabase } from '@/lib/supabase'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
+import initTranslations from '@/app/i18n';
+import parser from 'accept-language-parser'
+import i18nConfig from '@/i18nConfig'
 
 // Create a new ratelimiter that allows 5 requests per minute
 const ratelimit = new Ratelimit({
@@ -19,14 +22,18 @@ const requestSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    // Get preferred language from Accept-Language header
+    const acceptLanguage = request.headers.get('accept-language') ?? 'en'
+    const supportedLocales = i18nConfig.locales
+    const preferredLocale = parser.pick(supportedLocales, acceptLanguage) ?? 'en'
+    const { t } = await initTranslations(preferredLocale, ['qrcode']);
+
     // Get IP for rate limiting
     const ip = request.headers.get('x-forwarded-for') ?? '127.0.0.1'
-    
-    // Check rate limit
     const { success } = await ratelimit.limit(ip)
     if (!success) {
       return NextResponse.json(
-        { error: 'Too many requests. Please try again later.' },
+        { error: t('qrcode:rateLimitExceeded') },
         { status: 429 }
       )
     }
@@ -34,14 +41,16 @@ export async function POST(request: NextRequest) {
     // Parse request body
     const body = await request.json()
     const result = requestSchema.safeParse(body)
-    
     if (!result.success) {
       return NextResponse.json(
-        { error: 'Invalid request. Please check your input.' },
+        { error: t('qrcode:invalidRequest') },
         { status: 400 }
       )
     }
 
+    // Use locale from request body, fallback to Accept-Language header
+    let { urls } = result.data
+    
     // Generate unique ID (8 characters)
     const id = nanoid(8)
     
@@ -50,14 +59,14 @@ export async function POST(request: NextRequest) {
       .from('urls')
       .insert({
         id,
-        urls: result.data.urls,
+        urls,
         ip_address: ip,
       })
 
     if (error) {
       console.error('Database error:', error)
       return NextResponse.json(
-        { error: 'Internal server error' },
+        { error: t('qrcode:generationFailed') },
         { status: 500 }
       )
     }

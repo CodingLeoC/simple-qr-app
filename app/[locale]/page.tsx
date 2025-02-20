@@ -112,7 +112,7 @@ export default function Home() {
 
           {error && (
             <p className="text-red-500 text-sm mt-2">
-              {t(`home:errorMessages.${error}`)}
+              {error}
             </p>
           )}
         </form>

@@ -3,5 +3,8 @@
     "qrCodeNotFoundHeading": "QRコードが見つかりません",
     "multipleUrlsFoundHeading": "複数のURLが見つかりました",
     "redirectMessage": "{{seconds}}秒後にリダイレクトします...",
-    "redirectingTo": "以下のURLに自動的にリダイレクトします:"
+    "redirectingTo": "以下のURLに自動的にリダイレクトします:",
+    "rateLimitExceeded": "リクエストが多すぎます。しばらくしてからもう一度お試しください。",
+    "invalidRequest": "無効なリクエストです。入力内容をご確認ください。",
+    "generationFailed": "QRコードの生成に失敗しました。もう一度お試しください。"
 }

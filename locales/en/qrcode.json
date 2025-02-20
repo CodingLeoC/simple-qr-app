@@ -3,5 +3,8 @@
     "qrCodeNotFoundHeading": "QR Code Not Found",
     "multipleUrlsFoundHeading": "Multiple URLs Found",
     "redirectMessage": "Redirecting in {{seconds}} seconds...",
-    "redirectingTo": "You will be automatically redirected to:"
+    "redirectingTo": "You will be automatically redirected to:",
+    "rateLimitExceeded": "Too many requests. Please try again later.",
+    "invalidRequest": "Invalid request. Please check your input.",
+    "generationFailed": "Failed to generate QR code. Please try again."
 }
