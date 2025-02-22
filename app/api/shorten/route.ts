@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Use locale from request body, fallback to Accept-Language header
-    let { urls } = result.data
+    const { urls } = result.data
     
     // Generate unique ID (8 characters)
     const id = nanoid(8)
